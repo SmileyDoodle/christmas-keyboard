@@ -4,9 +4,11 @@ Creating a project in Vue 3 with the use of TypeScript. Responsive layout wasn't
 
 A visual example of how the page looks like:
 
-<img src="https://github.com/SmileyDoodle/christmas-keyboard/blob/master/src/assets/keyboard-example.png">
-
-<img src="https://github.com/SmileyDoodle/christmas-keyboard/blob/master/src/assets/phrase-example.png">
+<hr/>
+<img src="https://github.com/SmileyDoodle/christmas-keyboard/blob/main/src/assets/keyboard-example.png">
+<hr/>
+<img src="https://github.com/SmileyDoodle/christmas-keyboard/blob/main/src/assets/phrase-example.png">
+<hr/>
 
 # Brief from Advent of JavaScript creators
 
@@ -20,10 +22,6 @@ You can use as many (or as few) tools, libraries, and frameworks as you'd like. 
 - A random letter will start to jiggle.
 - The user should type the same key that's jiggling and it will stop.
 - A new, random key will start jiggling
-
-[[FREE]] Need some support on this challenge? Upgrade to the **Solution tier.** You'll get a video explanation, from Amy.
-
-[[SOLUTION]] Need some support on this challenge? Join the [Learn Build Teach](http://learnbuildteach.com) Discord community. We have a separate channel set up specifically for the Advent of CSS.
 
 # Getting Started
 
@@ -46,8 +44,5 @@ You can use as many (or as few) tools, libraries, and frameworks as you'd like. 
 
 - Can I use libraries / frameworks on these projects?
   - Of course! We're providing the vanilla HTML and CSS, but you can use whatever tools and frameworks you'd like.
-- Oh no! I'm stuck!
-  - [[FREE]] Consider upgrading to the [Solutions tier](http://adventofjs.com). You'll get access to a video, where James explains how to write all the code.
-  - [[SOLUTION]] Check out the [Learn Build Teach Discord.](http://learnbuildteach.com) We have a specific channel set up, just for the Advent of JavaScript.
 - Can I use this project in my portfolio?
   - Sure! But, be honest about the work that _you_ did
