@@ -1,6 +1,6 @@
 <template>
   <div class="keyboard" v-show="!showWord">
-    <h1>EYES ON THE SCREEN</h1>
+    <h1>Discover all ten christmas wishes</h1>
     <div class="row">
       <button class="key" ref="`" value="`" @click="keyclick">`</button>
       <button class="key" ref="1" value="1" @click="keyclick">1</button>
@@ -92,12 +92,34 @@
         class="key"
         id="phrase-key"
         @click="showPhrase()"
+        @keyup.enter="showPhrase()"
       >
         Try again
       </button>
-      <button v-show="finishGame" class="key" id="phrase-key" @click="reload()">
+      <button
+        v-show="finishGame"
+        class="key restart-key"
+        id="phrase-key"
+        @click="reload()"
+        @keyup.enter="reload()"
+      >
         Restart the game
       </button>
+      <span v-show="finishGame">
+        <h6 class="total-wrap">
+          Total correct clicks:
+          <span class="correct-wrap">{{ correct }}</span>
+        </h6>
+        <h6 class="total-wrap">
+          Total mistakes: <span class="mistakes-wrap">{{ mistakes }}</span>
+        </h6>
+        <h6 class="total-wrap" v-if="Number(minutes) >= 1">
+          Total time spent: {{ minutes }} minutes
+        </h6>
+        <h6 class="total-wrap" v-if="Number(minutes) < 1">
+          Total time spent: {{ seconds }} seconds
+        </h6>
+      </span>
     </div>
   </div>
 </template>
@@ -121,13 +143,18 @@ export default defineComponent({
         "MERRY CHRISTMAS",
       ],
       usedPhrases: [] as Array<string>,
-      phrase: "",
-      oneWord: "",
-      letter: "",
-      jiggleWord: "",
+      phrase: "" as string,
+      oneWord: "" as string,
+      letter: "" as string,
+      jiggleWord: "" as string,
       showWord: false,
       finishGame: false,
-      time: 0,
+      minutes: "" as string,
+      seconds: "" as string,
+      start: new Date(),
+      end: new Date(),
+      correct: 0 as number,
+      mistakes: 0 as number,
     };
   },
   mounted() {
@@ -144,6 +171,8 @@ export default defineComponent({
         if (this.letter !== element.target.value) {
           const addLetterRef: any = this.$refs[element.target.value];
           addLetterRef.classList.add("wrongJiggle");
+          this.mistakes += 1;
+
           setTimeout(() => {
             addLetterRef.classList.remove("wrongJiggle");
           }, 2000);
@@ -155,6 +184,7 @@ export default defineComponent({
 
           const removeLetterRef: any = this.$refs[clickedButton];
           removeLetterRef.classList.remove("jiggle");
+          this.correct += 1;
 
           this.jiggleOrder();
         }
@@ -171,6 +201,8 @@ export default defineComponent({
         const addLetterRef: any = this.$refs[keyPress];
         if (addLetterRef) {
           addLetterRef.classList.add("wrongJiggle");
+          this.mistakes += 1;
+
           setTimeout(() => {
             addLetterRef.classList.remove("wrongJiggle");
           }, 2000);
@@ -183,6 +215,7 @@ export default defineComponent({
 
         const removeLetterRef: any = this.$refs[clickedButton];
         removeLetterRef.classList.remove("jiggle");
+        this.correct += 1;
 
         this.jiggleOrder();
       }
@@ -219,6 +252,13 @@ export default defineComponent({
 
       if (this.phrases.length === 0) {
         this.finishGame = true;
+
+        this.end = new Date();
+        const timeDifference: any = +new Date(this.end) - +new Date(this.start);
+        this.minutes = (timeDifference / 60000).toFixed(2);
+        if (Number(this.minutes) < 1) {
+          this.seconds = ((timeDifference % 60000) / 1000).toFixed(0);
+        }
       }
     },
     reload() {

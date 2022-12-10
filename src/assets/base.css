@@ -115,6 +115,22 @@ h1 {
   color: white;
 }
 
+.restart-key {
+  margin-bottom: 3rem;
+}
+
+.total-wrap {
+  margin: 0;
+}
+
+.correct-wrap {
+  color: #60C1B6;
+}
+
+.mistakes-wrap {
+  color: #D23369;
+}
+
 @keyframes jiggle {
   0% {
     transform: translate(1px, 1px) rotate(0deg);
